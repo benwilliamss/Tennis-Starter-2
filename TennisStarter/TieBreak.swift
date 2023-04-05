@@ -40,9 +40,9 @@ class TieBreak {
     }
     func TieBreakSetWonNotSet5() -> Bool{
         //used to determine tie break set win - for game 5
-            return  ((Player1.GetGamesWon() == 7 &&         Player2.GetGamesWon() == 6) ||
+            return  ((Player1.GetGamesWon() == 7 && Player2.GetGamesWon() == 6) ||
                      (Player1.GetGamesWon() == 6 && Player2.GetGamesWon() == 7)) &&
-                    !(Player1.GetSetsWon() == 2 && Player2.GetSetsWon() == 2)
+                    !(Player1.GetSetsWon() == 2 &&  Player2.GetSetsWon() == 2)
         }
 }
-let tieBreak = TieBreak();
+let tieBreak = TieBreak(); //needs an instance as we have properties to chnage and keep track of -> newTieBreak etc

@@ -5,7 +5,6 @@ class Game {
      This method will be called when player 1 wins a point and update the state of the instance of Game to reflect the change
      */
     private var GameOutcome  : [String] = ["0","15","30","40", "A", "G"];
-    
     func addPointToPlayer1(){
             var newScore : String?;
             if(tieBreak.Check()){

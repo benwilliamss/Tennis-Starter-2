@@ -62,7 +62,7 @@ class PlayerHistory {
         return (previousGamesWonLabel.map{Int(String($0)) ?? 0}.reduce(0,+))
     }
 }
-final class PlayerPersistentData { //make a static instance
+class PlayerPersistentData { //make a static instance
     var file: URL?;
     init(){
         //  intialise file path
@@ -108,7 +108,7 @@ final class PlayerPersistentData { //make a static instance
 
 //Instances 
 let Player1 = Player(); //global player instance
-let Player2 = Player();
+let Player2 = Player(); //instances created to work alongside the game
 let player1History = PlayerHistory();
 let player2History = PlayerHistory();
 

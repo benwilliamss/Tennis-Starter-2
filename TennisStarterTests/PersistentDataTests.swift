@@ -24,8 +24,9 @@ class PersistentDataTests: XCTestCase {
         mirror = Mirror(reflecting: match!)
     }
     
-    func testDataOnStartUp(){
-        print("Stored data: \(PlayerPersistentData().Read())")
+    func testNoDataOnStartUp(){
+        //only works if no data has been stored prior -> do not run if write button has already been pressed whilst mid game
+        PlayerPersistentData().Write()
         XCTAssertEqual(PlayerPersistentData().Read(), "Player1 Data Last Match \nsets: 0 games: 0 points: 0\nPlayer2 Data Last Match \nsets: 0 games: 0 points: 0", "No Storage data on project startup")
     }
     func testReadWriteData(){
@@ -37,7 +38,6 @@ class PersistentDataTests: XCTestCase {
             match.addSetToPlayer1()
         }
         PlayerPersistentData().Write()
-        print("Data read : \(PlayerPersistentData().Read())")
         XCTAssertEqual(PlayerPersistentData().Read(),"Player1 Data Last Match \nsets: 3 games: 3 points: 40\nPlayer2 Data Last Match \nsets: 0 games: 3 points: 40", "Read the data from storage")
     }
     func testPowerDownRead(){

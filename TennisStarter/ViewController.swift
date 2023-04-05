@@ -165,7 +165,6 @@ extension ViewController: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         guard let locationVal : CLLocationCoordinate2D = manager.location?.coordinate else {return}
-        //LocationLabel.text  = "(\(locationVal.longitude),\(locationVal.latitude))"
         let location : String = FindLocation().findLocation(longitude: Int(round(locationVal.longitude)), latitude: Int(round(locationVal.latitude)))
         LocationLabel.text  = (location != "") ? location : "(\(locationVal.longitude),\(locationVal.latitude))";
     }
@@ -184,7 +183,7 @@ extension ViewController {
             (textField) in textField.placeholder = "Enter date for match"
         }*/
         alert.addTextField{
-            (textField) in textField.placeholder = "Enter match duration"
+            (textField) in textField.placeholder = "Enter match duration(hours)"
         }
         alert.addTextField{
             (textField) in textField.placeholder = "Enter match info"

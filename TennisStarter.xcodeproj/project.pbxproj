@@ -36,6 +36,7 @@
 		7312DA9F29DD85D5004C40DB /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DA9E29DD85D5004C40DB /* PlayerTests.swift */; };
 		7312DAA129DD8EE2004C40DB /* PersistentDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DAA029DD8EE2004C40DB /* PersistentDataTests.swift */; };
 		7312DAA329DDEFF6004C40DB /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DAA229DDEFF6004C40DB /* LocationServices.swift */; };
+		7312DAA429DE1794004C40DB /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DAA229DDEFF6004C40DB /* LocationServices.swift */; };
 		BBA6F8DB1B26E78E006642BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6F8DA1B26E78E006642BC /* AppDelegate.swift */; };
 		BBA6F8DD1B26E78E006642BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6F8DC1B26E78E006642BC /* ViewController.swift */; };
 		BBA6F8E01B26E78E006642BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA6F8DE1B26E78E006642BC /* Main.storyboard */; };
@@ -332,6 +333,7 @@
 				7312DA9529DD79C7004C40DB /* MatchTests.swift in Sources */,
 				7312DA8D29DD6BEF004C40DB /* PlayerClasses.swift in Sources */,
 				7312DA8F29DD6BF6004C40DB /* Serving.swift in Sources */,
+				7312DAA429DE1794004C40DB /* LocationServices.swift in Sources */,
 				7312DA9929DD7AAA004C40DB /* ServeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
