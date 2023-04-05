@@ -35,6 +35,7 @@
 		7312DA9D29DD7BB0004C40DB /* MatchBallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DA9C29DD7BB0004C40DB /* MatchBallTests.swift */; };
 		7312DA9F29DD85D5004C40DB /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DA9E29DD85D5004C40DB /* PlayerTests.swift */; };
 		7312DAA129DD8EE2004C40DB /* PersistentDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DAA029DD8EE2004C40DB /* PersistentDataTests.swift */; };
+		7312DAA329DDEFF6004C40DB /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312DAA229DDEFF6004C40DB /* LocationServices.swift */; };
 		BBA6F8DB1B26E78E006642BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6F8DA1B26E78E006642BC /* AppDelegate.swift */; };
 		BBA6F8DD1B26E78E006642BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6F8DC1B26E78E006642BC /* ViewController.swift */; };
 		BBA6F8E01B26E78E006642BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA6F8DE1B26E78E006642BC /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 		7312DA9C29DD7BB0004C40DB /* MatchBallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchBallTests.swift; sourceTree = "<group>"; };
 		7312DA9E29DD85D5004C40DB /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		7312DAA029DD8EE2004C40DB /* PersistentDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentDataTests.swift; sourceTree = "<group>"; };
+		7312DAA229DDEFF6004C40DB /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		BBA6F8D51B26E78D006642BC /* TennisStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TennisStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA6F8D91B26E78D006642BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBA6F8DA1B26E78E006642BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				7312DA8129DD6A1B004C40DB /* MatchBalls.swift */,
 				7312DA8329DD6A2E004C40DB /* Serving.swift */,
 				7312DA8729DD6A55004C40DB /* Calendar.swift */,
+				7312DAA229DDEFF6004C40DB /* LocationServices.swift */,
 			);
 			path = TennisStarter;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				7312DA8229DD6A1B004C40DB /* MatchBalls.swift in Sources */,
 				7312DA7E29DD6966004C40DB /* PlayerClasses.swift in Sources */,
 				7312DA8629DD6A45004C40DB /* ProgressionLogic.swift in Sources */,
+				7312DAA329DDEFF6004C40DB /* LocationServices.swift in Sources */,
 				7312DA8429DD6A2E004C40DB /* Serving.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

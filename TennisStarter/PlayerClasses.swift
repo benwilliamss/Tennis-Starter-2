@@ -65,7 +65,7 @@ class PlayerHistory {
 final class PlayerPersistentData { //make a static instance
     var file: URL?;
     init(){
-        //  path
+        //  intialise file path
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
         file = URL(fileURLWithPath: "PlayerLastMatchDataFile", relativeTo: path);
     }
@@ -85,8 +85,6 @@ final class PlayerPersistentData { //make a static instance
                }
             };
         }
-    
-    
     func Read() -> String {
         /*let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
         let file = URL(fileURLWithPath: "myFile", relativeTo: path);*/
