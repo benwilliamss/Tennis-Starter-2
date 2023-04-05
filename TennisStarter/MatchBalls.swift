@@ -11,10 +11,11 @@ import AVFAudio
 
 class MatchBalls {
     private var matchBallsFetched = 0; //keeps track of balls fetched for logic
-    
     func newBallsCheck() -> Bool { //performs a new balls check
         var newBalls = false
-        if ((Player1.GetGamesWonInMatch() + Player2.GetGamesWonInMatch()) >= (7 + 9*matchBallsFetched)){
+        let player1GamesWon = player1History.getPreviousGamesWonInMatch() + Player1.GetGamesWon();//Games won in the match
+        let player2GamesWon = player2History.getPreviousGamesWonInMatch() + Player2.GetGamesWon();//Games won in the match
+        if ((player1GamesWon + player2GamesWon) >= (7 + 9*matchBallsFetched)){
             print("Ball count : \(7 + 9*matchBallsFetched)")
             self.matchBallsFetched += 1;
             print("Number of times fetched(Updated): \(matchBallsFetched)") 
@@ -25,7 +26,7 @@ class MatchBalls {
     }
     
     private func fetchBallsCall() {
-        //reference needed
+        /*Swift text to speech. (n.d.). Stack Overflow. Retrieved April 5, 2023, from https://stackoverflow.com/questions/42023612/swift-text-to-speech*/
         let utterance = AVSpeechUtterance(string: "New Balls please");
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US");
         AVSpeechSynthesizer().speak(utterance);

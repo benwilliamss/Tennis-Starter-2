@@ -13,41 +13,29 @@ class Set {
     private let GamesToWinaSet = 6;
     
     func addGameToPlayer1(){
-        if (player1WonSet()) { //end of set?
-            Player2.UpdateGamesWon(); //reset to games to 0 for player 2
-        }
-        Player1.UpdateGamesWon();
+        Player1.incrementGamesWon();
     }
 
     func addGameToPlayer2(){
-        /*var newGamesValue = 1; /*Player2.GetCurrentGamesWonInSet();
-        newGamesValue+=1;*/
-        if (player2WonSet()) {
-            newGamesValue = 0;
-            Player1.UpdateGamesWon(enter0ToReset: 0);
-        }*/
-        if (player2WonSet()) { //end of set?
-            Player1.UpdateGamesWon(); //reset to games to 0 for player 1
-        }
-        Player2.UpdateGamesWon();
+         Player2.incrementGamesWon()
     }
     
     func player1Games() -> Int {
-        return Player1.GetCurrentGamesWonInSet()
+        return Player1.GetGamesWon()
     }
     
     func player2Games() -> Int {
-        return Player2.GetCurrentGamesWonInSet()
+        return Player2.GetGamesWon()
     }
     
     func player1WonSet() -> Bool{
-        return  (Player1.GetCurrentGamesWonInSet()  >= GamesToWinaSet
-                && (Player1.GetCurrentGamesWonInSet() - Player2.GetCurrentGamesWonInSet() >= 2))
+        return  (Player1.GetGamesWon()  >= GamesToWinaSet
+                && (Player1.GetGamesWon() - Player2.GetGamesWon() >= 2))
         ||  tieBreak.TieBreakSetWonNotSet5() || tieBreak.TieBreakSetWonSet5()
     }
     func player2WonSet() -> Bool{
-        return (Player2.GetCurrentGamesWonInSet() >= GamesToWinaSet
-                && (Player2.GetCurrentGamesWonInSet() - Player1.GetCurrentGamesWonInSet() >= 2))
+        return (Player2.GetGamesWon() >= GamesToWinaSet
+                && (Player2.GetGamesWon() - Player1.GetGamesWon() >= 2))
         ||  tieBreak.TieBreakSetWonNotSet5() || tieBreak.TieBreakSetWonSet5()
     }
     func complete () -> Bool {

@@ -44,16 +44,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func restartPressed(_ sender: AnyObject) {
-        Player1.ResetValue();
-        Player2.ResetValue();
-        restartMatch = true;
+        Player1.ResetPlayerScores();
+        Player2.ResetPlayerScores();
+        player1History.clearGamesWonLabel();
+        player2History.clearGamesWonLabel();
+        restartMatch = true; //restarts match flag --> used in functions below
         addButtonsDisableEnable();
         matchBalls.resetMatchBalls();
         serveChange()
-        storePreviousLabels();
-        updateScores();
-        displayWhoIsWinning();
-        restartMatch =  false;
+        UIUpdateFunctions()
+        restartMatch =  false; //turns flag off
     }
 }
 
@@ -73,8 +73,8 @@ extension ViewController {
     func updateScores() {
         p1PointsLabel.text = Player1.GetPointsWon();
         p2PointsLabel.text = Player2.GetPointsWon();
-        p1GamesLabel.text  = String(Player1.GetCurrentGamesWonInSet());
-        p2GamesLabel.text  = String(Player2.GetCurrentGamesWonInSet());
+        p1GamesLabel.text  = String(Player1.GetGamesWon());
+        p2GamesLabel.text  = String(Player2.GetGamesWon());
         p1SetsLabel.text   = String(Player1.GetSetsWon());
         p2SetsLabel.text   = String(Player2.GetSetsWon());
     }
@@ -109,10 +109,8 @@ extension ViewController {
             p2PreviousSetsLabel.text = "-";
         }
         else {
-            print("In Store previous labels else")
-            print("prev games won: \(Player1.previousGamesWon)")
-            p1PreviousSetsLabel.text! = Player1.previousGamesWon;
-            p2PreviousSetsLabel.text! = Player2.previousGamesWon;
+            p1PreviousSetsLabel.text! = player1History.previousGamesWonLabel;
+            p2PreviousSetsLabel.text! = player2History.previousGamesWonLabel;
         }
     }
     func displayWhoIsWinning() {
@@ -151,7 +149,7 @@ extension ViewController {
 
 extension ViewController: CLLocationManagerDelegate {
     //added Location services
-    //let locationManager = CLLocationManager();
+    //Code taken and adapted from (Location Services | IOS | Swift | Andrew’s Tutorials, n.d.)
     override func viewDidLoad() {
         //super.viewDidLoad()
         //location services
@@ -179,7 +177,8 @@ extension ViewController: CLLocationManagerDelegate {
     
 }
 extension ViewController {
-    //added match scheduling funcitonality with calendar
+    //added match scheduling funcitonality  to calendar --> only schedules for the same day
+    /*Code taken and adapted from (Jagne, 2019) & (Swift - How to Open Calendar with Event - NSURL Calshow:, n.d.)*/
     @IBAction func ScheduleMatch(_ sender: UIButton){
         //pop up
         var alert = UIAlertController(title: "Schedule Match For Today", message: "Enter title, date, duration", preferredStyle: .alert)
@@ -249,25 +248,25 @@ extension ViewController {
 extension ViewController {
     //added player stats and  pop up display
     @IBAction func getPlayer1Stats(_ sender: UIButton){
-        let SetsWonPercentage  = getWinPercentage(winValue: Player1.GetSetsWon(), lossValue: Player2.GetSetsWon())
-        let GamesWonPercentage = getWinPercentage(winValue: Player1.GetGamesWonInMatch(), lossValue: Player2.GetGamesWonInMatch())
+        let SetsWonPercentage  = getWinPercentage(winValue: player1History.getTotalSetsWon(), lossValue: player2History.getTotalSetsWon())
+        let GamesWonPercentage = getWinPercentage(winValue: player1History.getTotalGamesWon(), lossValue: player2History.getTotalGamesWon())
         
-        let alert = UIAlertController(title: "Player 1 Statistics",  message: "Sets Won: \(SetsWonPercentage)%\nGames Won: \(GamesWonPercentage)%", preferredStyle: .alert);
+        let alert = UIAlertController(title: "Player 1 Statistics",  message: "Sets Won: \(round(SetsWonPercentage))%\nGames Won: \(round(GamesWonPercentage))%", preferredStyle: .alert);
         
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil));
         self.present(alert, animated: true);
     }
     @IBAction func getPlayer2Stats(_ sender: UIButton){
-        let SetsWonPercentage  = getWinPercentage(winValue: Player2.GetSetsWon(), lossValue: Player1.GetSetsWon())
-        let GamesWonPercentage = getWinPercentage(winValue: Player2.GetGamesWonInMatch(), lossValue: Player1.GetGamesWonInMatch())
+        let SetsWonPercentage  = getWinPercentage(winValue: player2History.getTotalSetsWon(), lossValue: player1History.getTotalSetsWon())
+        let GamesWonPercentage = getWinPercentage(winValue: player2History.getTotalGamesWon(), lossValue: player1History.getTotalGamesWon())
         
-        let alert = UIAlertController(title: "Player 2 Statistics",  message: "Sets Won: \(SetsWonPercentage)%\nGames Won: \(GamesWonPercentage)%", preferredStyle: .alert);
+        let alert = UIAlertController(title: "Player 2 Statistics",  message: "Sets Won: \(round(SetsWonPercentage))%\nGames Won: \(round(GamesWonPercentage))%", preferredStyle: .alert);
 
         
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil));
         self.present(alert, animated: true);
     }
-    func getWinPercentage(winValue: Int, lossValue: Int) -> Double {
+    private func getWinPercentage(winValue: Int, lossValue: Int) -> Double {
         let percentage  = (Double(winValue) / Double(winValue + lossValue))*100;
         return (percentage >= 0) ? percentage : 0.0; //safety incase nil
     }

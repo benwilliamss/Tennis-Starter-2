@@ -11,15 +11,14 @@ import Foundation
 
 class Match {
     private let SetsToWinaMatch = 3; //best of 5
-    
     func addSetToPlayer1(){
-        Player1.UpdateSetsWon(); //increment sets
+        Player1.incrementSetsWon(); //increment sets
     }
     /**
      This method will be called when player 2 wins a point
      */
     func addSetToPlayer2(){
-        Player2.UpdateSetsWon(); //increments sets
+        Player2.incrementSetsWon(); //increments sets
     }
     /**
      Returns the score for player 1, this will only ever be "0","15","30","40" or "A"
@@ -28,7 +27,6 @@ class Match {
     func player1Sets() -> Int {
         return Player1.GetSetsWon()
     }
-
     /**
      Returns the score for player 2, this will only ever be "0","15","30","40" or "A"
      If the game is complete, this should return an empty string

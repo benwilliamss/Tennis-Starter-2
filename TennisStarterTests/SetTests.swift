@@ -36,11 +36,6 @@ class SetTests: XCTestCase {
             setT.addGameToPlayer2();
         }
         setT.addGameToPlayer1();
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
         XCTAssertFalse(setT.player1WonSet())
     }
     
@@ -51,11 +46,6 @@ class SetTests: XCTestCase {
             setT.addGameToPlayer2();
         }
         setT.addGameToPlayer2();
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
         XCTAssertFalse(setT.player2WonSet())
     }
     
@@ -68,11 +58,6 @@ class SetTests: XCTestCase {
         }
         setT.addGameToPlayer1();
         setT.addGameToPlayer1();
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
         XCTAssertTrue(setT.player1WonSet())
     }
     func testSetWinPlayer2Margin(){
@@ -83,12 +68,6 @@ class SetTests: XCTestCase {
         }
         setT.addGameToPlayer2();
         setT.addGameToPlayer2();
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
-        
         XCTAssertTrue(setT.player2WonSet())
     }
 
@@ -98,11 +77,6 @@ class SetTests: XCTestCase {
             setT.addGameToPlayer1();
             XCTAssertEqual(setT.player1Games(), count, accuracy: 0);
         }
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
     }
     func testAddGamesPlayer2(){
         print("\n\n 6. testAddGamesPlayer2 \n")
@@ -110,29 +84,13 @@ class SetTests: XCTestCase {
             setT.addGameToPlayer2();
             XCTAssertEqual(setT.player2Games(), count, accuracy: 0);
         }
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
     }
     func testZeroPointsPlayer1(){
         print("\n\n 7. ntestZeroPointsPlayer1\n")
         XCTAssertEqual(setT.player1Games(), 0, accuracy: 0);
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
     }
     func testZeroPointsPlayer2(){
         print("\n\n 8. ntestZeroPointsPlayer2\n")
-        XCTAssertEqual(setT.player2Games(), 0, accuracy: 0);
-        print("Player 1 Games won : \(Player1.GetCurrentGamesWonInSet()) ")
-        print("Player 1 sets won : \(Player1.GetSetsWon()) ")
-        print("Player 2 Games won : \(Player2.GetCurrentGamesWonInSet()) ")
-        print("Player 2 sets won : \(Player2.GetSetsWon()) ")
-        print("Games won in match player 1 : \(Player1.GetCurrentGamesWonInSet())")
     }
     
 }

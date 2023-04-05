@@ -12,8 +12,6 @@ class Player {
     private var PointsWon : String =  "0";
     private var SetsWon   : Int =  0;
     private var GamesWon  : Int =  0;
-    var previousGamesWon  : String = ""; //needed for previous games in set label
-    private var totalGamesWon : Int    = 0;
     //maybe refactor into a player history class
     func GetSetsWon() -> Int{
         return self.SetsWon
@@ -21,52 +19,60 @@ class Player {
     func GetPointsWon() -> String {
         return self.PointsWon
     }
-    func GetCurrentGamesWonInSet() -> Int {
+    func GetGamesWon() -> Int {
         return self.GamesWon
     }
-    func UpdatePointsWon(newValue : String){
+    func updatePointsWon(newValue : String){
         //Values are controlled by the addPoints in games so only certain values can update this property
         self.PointsWon = newValue;
     }
-    func UpdateGamesWon(){
-        print("Update games called")
-        if(set.complete()){
-            logGames()
-            self.GamesWon = 0; //reset value
-        } //on reset, store the games
-        else{
-            self.GamesWon = GamesWon+1; //incrememnt games
-            self.totalGamesWon += 1;
-        }
-    }
-    func UpdateSetsWon(){
-        self.SetsWon  = SetsWon + 1;
-    }
-    func ResetValue() {
+    func incrementGamesWon(){self.GamesWon = GamesWon+1;} //incrememnt games}
+    func incrementSetsWon(){self.SetsWon  = SetsWon + 1;}
+    //reset functions --> no need to reset sets unless end of game(ResetPlayerScores)
+    func resetPointsValue(){self.PointsWon = "0"}
+    func resetGamesValue(){self.GamesWon = 0}
+    
+    func ResetPlayerScores() { //reset all values
         self.PointsWon = "0";
         self.SetsWon   =  0;
         self.GamesWon  =  0;
-        previousGamesWon = "";
-    }
-    func GetGamesWonInMatch() -> Int {
-        return totalGamesWon/*(GetCurrentGamesWonInSet() + previousGamesWon.map{Int(String($0)) ?? 0}.reduce(0,+))*/
-    }
-    func logGames(){//needed for previous games in set label
-        self.previousGamesWon += String(GamesWon)
     }
 }
 
+class PlayerHistory {
+    //stores the match history for a given individual
+    var previousGamesWonLabel : String = ""; //string for label use
+    private var totalGamesWon : Int     = 0;
+    private var totalSetsWon  : Int     = 0;
+    
+    func incrementTotalGameWon() {self.totalGamesWon += 1}
+    func incrementTotalSetsWon(){self.totalSetsWon += 1}
+    
+    func getTotalGamesWon() -> Int {return self.totalGamesWon}
+    func getTotalSetsWon() -> Int {return self.totalSetsWon}
+    
+    func logGames(GamesWon : Int){//needed for previous games in set label
+        self.previousGamesWonLabel += String(GamesWon); //X to indicate game not logged
+    }
+    func clearGamesWonLabel(){ //clearmatchTrackers?
+        self.previousGamesWonLabel = ""; //matches the clearing displayed on demo
+    }
+    func getPreviousGamesWonInMatch() -> Int {
+        /*(Ios - Swift Add All Elements from Array Together, n.d.)*/
+        return (previousGamesWonLabel.map{Int(String($0)) ?? 0}.reduce(0,+))
+    }
+}
 final class PlayerPersistentData { //make a static instance
     var file: URL?;
     init(){
-        //initialise path
+        //  path
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
         file = URL(fileURLWithPath: "PlayerLastMatchDataFile", relativeTo: path);
     }
     func Write(){
         //if let file = fileURL {
-        let player1D = "Player1 Data Last Match \nsets: \(Player1.GetSetsWon()) games: \(Player1.GetCurrentGamesWonInSet()) points: \(Player1.GetPointsWon())";
-        let player2D = "\nPlayer2 Data Last Match \nsets: \(Player2.GetSetsWon()) games: \(Player2.GetCurrentGamesWonInSet()) points: \(Player2.GetPointsWon())";
+        let player1D = "Player1 Data Last Match \nsets: \(Player1.GetSetsWon()) games: \(Player1.GetGamesWon()) points: \(Player1.GetPointsWon())";
+        let player2D = "\nPlayer2 Data Last Match \nsets: \(Player2.GetSetsWon()) games: \(Player2.GetGamesWon()) points: \(Player2.GetPointsWon())";
         let dataToAddToFile = player1D + player2D;
 
         if let data = dataToAddToFile.data(using: .utf8){
@@ -101,8 +107,12 @@ final class PlayerPersistentData { //make a static instance
         return fileInfo
     }
 }
+
+//Instances 
 let Player1 = Player(); //global player instance
 let Player2 = Player();
+let player1History = PlayerHistory();
+let player2History = PlayerHistory();
 
 
 

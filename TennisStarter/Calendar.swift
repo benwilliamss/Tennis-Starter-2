@@ -9,6 +9,7 @@ import EventKit //calendar events
 import Foundation
 
 final class CalendarObj{
+    /*Code taken and adapted from (Jagne, 2019)*/
     let  eventStore = EKEventStore()
     func matchSchedulingAccess() -> Bool {
         var matchAccess = false;

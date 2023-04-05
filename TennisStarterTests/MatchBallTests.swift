@@ -37,18 +37,13 @@ class MatchBallsTests: XCTestCase {
     func testEvery9Games(){
         //Tests new match balls after every 9, after the first 7
         testAfter7Games()
-        print("Games count player 1(3): \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2(4): \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
+
         //--------------------------------------
         getTo9Games()
-        print("Games count player 1(7): \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2(8): \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
         XCTAssertTrue(matchBalls.newBallsCheck())
         //--------------------------------------
         setT.addGameToPlayer2() //make sure new balls
         setT.addGameToPlayer2()
-        print("Games count player 1: \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2: \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
         XCTAssertFalse(matchBalls.newBallsCheck())
         
         
@@ -59,17 +54,14 @@ class MatchBallsTests: XCTestCase {
     }
     func test9GamesAtStart(){
         getTo9Games()
-        print("Games count player 1: \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2: \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
-        
         XCTAssertFalse(matchBalls.newBallsCheck())
     }
     
     func testMatchBallsOnReset(){
         //tests that the match balls can handle a game reset
         testEvery9Games()
-        Player2.ResetValue()
-        Player1.ResetValue()
+        Player2.ResetPlayerScores() //reset scores
+        Player1.ResetPlayerScores()
         XCTAssertFalse(matchBalls.newBallsCheck()) //falls after resets
         getTo7Games()
         XCTAssertTrue(matchBalls.newBallsCheck())
@@ -79,8 +71,6 @@ class MatchBallsTests: XCTestCase {
     func testAterConesecutive7Games(){
         testAfter7Games()
         getTo7Games()
-        print("Player 2 games: \(Player2.GetCurrentGamesWonInSet())")
-        print("Player 1 games: \(Player1.GetCurrentGamesWonInSet())")
         XCTAssertFalse(matchBalls.newBallsCheck())
         
     }

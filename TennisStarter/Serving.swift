@@ -30,7 +30,7 @@ class Serve  {
         }
         else if(tieBreak.Check() && !tieBreak.newTieBreak){ //tie break everytwo points
             serveAlternate += 1;
-            Player1Serving =  ((serveAlternate % 2) == 0) ?  !Player1Serving : Player1Serving;
+            Player1Serving =  ((serveAlternate % 2) == 0) ?  !Player1Serving : Player1Serving; //Alternate serve every 2
         }
         if (previousServe != Player1Serving){ //new server?
             ServeSound();
@@ -38,9 +38,9 @@ class Serve  {
         return  Player1Serving
     }
     private func ServeSound(){
-        //need citation here
+        /* code adapted from (Ios - Creating and Playing a Sound in Swift, n.d.)*/
         if let url = Bundle.main.url(forResource: "Sound", withExtension: "wav"){
-            var sound  : SystemSoundID = 0;
+            var sound  : SystemSoundID = 0; //try put this in
             AudioServicesCreateSystemSoundID(url as CFURL, &sound);
             AudioServicesPlaySystemSound(sound)
         }

@@ -7,11 +7,6 @@ class Game {
     private var GameOutcome  : [String] = ["0","15","30","40", "A", "G"];
     
     func addPointToPlayer1(){
-        if(player1Won()) {
-            Player1.UpdatePointsWon(newValue: "0");
-            Player2.UpdatePointsWon(newValue: "0");
-        }
-        else {
             var newScore : String?;
             if(tieBreak.Check()){
                 newScore =  "0";
@@ -26,22 +21,16 @@ class Game {
                 if(Player2.GetPointsWon() == "A" && newScore == "A")
                 {
                     newScore = "40";
-                    Player2.UpdatePointsWon(newValue: "40"); //equal
+                    Player2.updatePointsWon(newValue: "40"); //equal
                 }
             }
-            Player1.UpdatePointsWon(newValue: newScore!);
-        }
+            Player1.updatePointsWon(newValue: newScore!);
     }
     
     /**
      This method will be called when player 2 wins a point
      */
     func addPointToPlayer2(){
-        if(player2Won()) {
-            Player1.UpdatePointsWon(newValue: "0");
-            Player2.UpdatePointsWon(newValue: "0");
-        }
-        else {
             var newScore : String?;
             if(tieBreak.Check()){
                 newScore =  "0";
@@ -56,11 +45,10 @@ class Game {
                 if(Player1.GetPointsWon() == "A" && newScore == "A")
                 {
                     newScore = "40";
-                    Player1.UpdatePointsWon(newValue: "40"); //equal
+                    Player1.updatePointsWon(newValue: "40"); //equal
                 }
             }
-            Player2.UpdatePointsWon(newValue: newScore!);
-        }
+            Player2.updatePointsWon(newValue: newScore!);
     }
 
     /**
@@ -131,7 +119,7 @@ class Game {
         let Player2CurrentPointsInt  : Int =  (GameOutcome.firstIndex(of: Player2.GetPointsWon()) ?? 0); //find index/Int of score
         addPointToPlayer1() //add points to determine win
         let result = player1Won() //did the player win?
-        Player1.UpdatePointsWon(newValue: currentPointsStr) //restore previous value
+        Player1.updatePointsWon(newValue: currentPointsStr) //restore previous value
         return (result) ? (Player1CurrentPointsInt - Player2CurrentPointsInt) : 0;
     }
     
@@ -144,7 +132,7 @@ class Game {
         let Player1CurrentPointsInt  : Int =  (GameOutcome.firstIndex(of: Player1.GetPointsWon()) ?? 0); //offset by 0 index by 1
         addPointToPlayer2() //add points
         let result = player2Won() //did the player win?
-        Player2.UpdatePointsWon(newValue: currentPointsStr) //restore previous value
+        Player2.updatePointsWon(newValue: currentPointsStr) //restore previous value
         return (result) ? (Player2CurrentPointsInt - Player1CurrentPointsInt) : 0;
     }
 }

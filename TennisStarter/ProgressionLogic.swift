@@ -12,44 +12,56 @@ import Foundation
 class GameProgressionLogic {
     fileprivate let setWon = SetProgressionLogic ();
     func player1(){//Player 1 wont the game -> Reset points & check if set is won also
-        game.addPointToPlayer1();
+        //game.addPointToPlayer1();
+        Player1.resetPointsValue() //reset value on game won
         set.addGameToPlayer1();
+        player1History.incrementTotalGameWon()
         if (set.player1WonSet())
         {
             setWon.player1()
         }
+        if (!match.matchEnded()){
+            Player2.resetPointsValue() //don't reset player score at end game
+        }
         matchBalls.newBallsCheck();
     }
     func player2(){ //Player 2 wont the game -> Reset points & check if set is won also
-        game.addPointToPlayer2(); //may need a niche case for tiebreak matchwin
+        //game.addPointToPlayer2(); //may need a niche case for tiebreak matchwin
+        Player2.resetPointsValue() //refactor into progression logic??
         set.addGameToPlayer2();
+        player2History.incrementTotalGameWon()
         if (set.player2WonSet())
         {
             setWon.player2()
+        }
+        if (!match.matchEnded()){
+            Player1.resetPointsValue()
         }
         matchBalls.newBallsCheck();//resets points to 0
     }
 }
 
 private class SetProgressionLogic { //made private as only used by the PlayerWonGame class & not to be consfused with Set class methods
-    func player1 (){
-        //set.addGameToPlayer1()
-        match.addSetToPlayer1(); //reset sets
-        if(match.matchEnded()){ //condition to keep games score when won --> like in the example of this project
-            Player1.logGames()//needed for previous games in set label//stores previous labels
-            Player2.logGames()
-        } //maybe because no call to store previous lables on end game
-        else{set.addGameToPlayer1(); } //Resets games to 0
-        //usually called in addGameToPlayer
-    }
-    func player2(){
-        //set.addGameToPlayer2()
-        match.addSetToPlayer2(); //reset sets
-        if(match.matchEnded()){
-            Player1.logGames()//needed for previous games in set label//stores previous labels
-            Player2.logGames()
+    func player1 (){ //player 1 won set
+        match.addSetToPlayer1(); //add set
+        player1History.incrementTotalSetsWon()
+        player1History.logGames(GamesWon: Player1.GetGamesWon()) //store game labels
+        player2History.logGames(GamesWon: Player2.GetGamesWon())
+        if(!match.matchEnded()){ //match still playing?
+            Player1.resetGamesValue()//reset game values
+            Player2.resetGamesValue()
         }
-        else{set.addGameToPlayer2();}//Resets games to 0
+    }
+    func player2(){ //player2 won set
+        match.addSetToPlayer2(); //add set
+        player2History.incrementTotalSetsWon()
+        player1History.logGames(GamesWon: Player1.GetGamesWon()) //store game labels
+        player2History.logGames(GamesWon: Player2.GetGamesWon())
+        if(!match.matchEnded()){ //match still playing?
+            Player1.resetGamesValue() //reset game values
+            Player2.resetGamesValue()
+        }
     }
 }
 let gameWon = GameProgressionLogic()
+
