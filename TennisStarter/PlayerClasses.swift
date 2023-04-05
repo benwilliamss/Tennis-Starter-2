@@ -28,16 +28,19 @@ class Player {
         //Values are controlled by the addPoints in games so only certain values can update this property
         self.PointsWon = newValue;
     }
-    func UpdateGamesWon(newValue : Int){
+    func UpdateGamesWon(){
         print("Update games called")
-        if(newValue == 0){
-            previousGamesWon += String(GamesWon)
-        }; //on reset, store the games
-        self.totalGamesWon += (newValue > 0) ? 1 : 0;
-        self.GamesWon = (newValue >= 0) ? newValue: 0;
+        if(set.complete()){
+            logGames()
+            self.GamesWon = 0; //reset value
+        } //on reset, store the games
+        else{
+            self.GamesWon = GamesWon+1; //incrememnt games
+            self.totalGamesWon += 1;
+        }
     }
-    func UpdateSetsWon(newValue : Int){
-        self.SetsWon  = (newValue >= 0) ? newValue: 0;
+    func UpdateSetsWon(){
+        self.SetsWon  = SetsWon + 1;
     }
     func ResetValue() {
         self.PointsWon = "0";
@@ -47,6 +50,9 @@ class Player {
     }
     func GetGamesWonInMatch() -> Int {
         return totalGamesWon/*(GetCurrentGamesWonInSet() + previousGamesWon.map{Int(String($0)) ?? 0}.reduce(0,+))*/
+    }
+    func logGames(){//needed for previous games in set label
+        self.previousGamesWon += String(GamesWon)
     }
 }
 

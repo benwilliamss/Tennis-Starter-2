@@ -13,13 +13,13 @@ class Match {
     private let SetsToWinaMatch = 3; //best of 5
     
     func addSetToPlayer1(){
-        Player1.UpdateSetsWon(newValue: Player1.GetSetsWon() + 1);
+        Player1.UpdateSetsWon(); //increment sets
     }
     /**
      This method will be called when player 2 wins a point
      */
     func addSetToPlayer2(){
-        Player2.UpdateSetsWon(newValue: Player2.GetSetsWon() + 1);
+        Player2.UpdateSetsWon(); //increments sets
     }
     /**
      Returns the score for player 1, this will only ever be "0","15","30","40" or "A"

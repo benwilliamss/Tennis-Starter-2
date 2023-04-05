@@ -56,52 +56,56 @@ class PlayerTests: XCTestCase {
     }
     func testUpdateSetsValue(){
         //include illegal value
-        newPlayer1.UpdateSetsWon(newValue: 3)
-        newPlayer2.UpdateSetsWon(newValue: 2)
+        for _ in 0...2{
+            newPlayer1.UpdateSetsWon() //Increment
+            newPlayer2.UpdateSetsWon() //increment to 1
+        }
         XCTAssertEqual(newPlayer1.GetSetsWon(), 3, "test matches updated values")
-        XCTAssertEqual(newPlayer2.GetSetsWon(), 2, "test matches updated values")
-        
-        newPlayer1.UpdateSetsWon(newValue: -1)
-        newPlayer2.UpdateSetsWon(newValue: -2)
-        XCTAssertEqual(newPlayer1.GetSetsWon(), 0, "test illegal values")
-        XCTAssertEqual(newPlayer2.GetSetsWon(), 0, "test illegal values")
-        newPlayer1.UpdateSetsWon(newValue: 1)
-        newPlayer2.UpdateSetsWon(newValue: 3)
-        XCTAssertEqual(newPlayer1.GetSetsWon(), 1, "test matches updated values")
         XCTAssertEqual(newPlayer2.GetSetsWon(), 3, "test matches updated values")
+        newPlayer1.UpdateSetsWon()
+        newPlayer1.UpdateSetsWon()
+        newPlayer2.UpdateSetsWon()
+        XCTAssertEqual(newPlayer1.GetSetsWon(), 5, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetSetsWon(), 4, "test matches updated values")
+        newPlayer1.UpdateSetsWon()
+        newPlayer2.UpdateSetsWon()
+        XCTAssertEqual(newPlayer1.GetSetsWon(), 6, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetSetsWon(), 5, "test matches updated values")
     }
     
     func testUpdateGamesValue(){
        //include illegal value
-        newPlayer1.UpdateGamesWon(newValue: 6)
-        newPlayer2.UpdateGamesWon(newValue: 7)
-        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 6, "test matches updated values")
-        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 7, "test matches updated values")
+        newPlayer1.UpdateGamesWon()
+        newPlayer2.UpdateGamesWon()
+        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 1, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 1, "test matches updated values")
         
-        newPlayer1.UpdateGamesWon(newValue: -1)
-        newPlayer2.UpdateGamesWon(newValue: -2)
-        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 0, "test illegal values")
-        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 0, "test illegal values")
+        newPlayer1.UpdateGamesWon()
+        newPlayer2.UpdateGamesWon()
+        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 2, "test illegal values")
+        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 2, "test illegal values")
         
-        newPlayer1.UpdateGamesWon(newValue: 4)
-        newPlayer2.UpdateGamesWon(newValue: 5)
-        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 4, "test matches updated values")
-        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 5, "test matches updated values")
+        newPlayer1.UpdateGamesWon()
+        newPlayer2.UpdateGamesWon()
+        newPlayer2.UpdateGamesWon()
+        XCTAssertEqual(newPlayer1.GetCurrentGamesWonInSet(), 3, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetCurrentGamesWonInSet(), 4, "test matches updated values")
     }
     
     func testGamesWonInMatch(){
-        newPlayer1.UpdateGamesWon(newValue: 6)
-        print(set.complete())
-        newPlayer2.UpdateGamesWon(newValue: 6)
-        print(set.complete())
-        XCTAssertEqual(newPlayer1.GetGamesWonInMatch(), 6, "test matches updated values")
-        XCTAssertEqual(newPlayer2.GetGamesWonInMatch(), 6, "test matches updated values")
-        print("Games count player 1: \(set.player1Games()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2: \(set.player1Games()) && player count : \(Player2.GetCurrentGamesWonInSet())")
-        newPlayer1.UpdateGamesWon(newValue: 2)
-        newPlayer2.UpdateGamesWon(newValue: 3)
-        
-        XCTAssertEqual(newPlayer1.GetGamesWonInMatch(), 8, "test matches updated values")
-        XCTAssertEqual(newPlayer2.GetGamesWonInMatch(), 9, "test matches updated values")
+        newPlayer1.UpdateGamesWon()
+        newPlayer2.UpdateGamesWon()
+        print("Games count player 1: \(newPlayer1.GetGamesWonInMatch()) && player count : \(newPlayer1.GetCurrentGamesWonInSet())")
+        print("Games count player 2: \(newPlayer2.GetGamesWonInMatch()) && player count : \(newPlayer2.GetCurrentGamesWonInSet())")
+        XCTAssertEqual(newPlayer1.GetGamesWonInMatch(), 1, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetGamesWonInMatch(), 1, "test matches updated values")
+        for _ in 1...6 {
+            newPlayer1.UpdateGamesWon()
+            newPlayer2.UpdateGamesWon()
+        }
+        print("Games count player 1: \(newPlayer1.GetGamesWonInMatch()) && player count : \(newPlayer1.GetCurrentGamesWonInSet())")
+        print("Games count player 2: \(newPlayer2.GetGamesWonInMatch()) && player count : \(newPlayer2.GetCurrentGamesWonInSet())")
+        XCTAssertEqual(newPlayer1.GetGamesWonInMatch(), 7, "test matches updated values")
+        XCTAssertEqual(newPlayer2.GetGamesWonInMatch(), 7, "test matches updated values")
     }
 }

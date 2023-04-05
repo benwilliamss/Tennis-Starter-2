@@ -36,8 +36,8 @@ private class SetProgressionLogic { //made private as only used by the PlayerWon
         //set.addGameToPlayer1()
         match.addSetToPlayer1(); //reset sets
         if(match.matchEnded()){ //condition to keep games score when won --> like in the example of this project
-            Player1.UpdateGamesWon(newValue: set.player1Games())//stores previous labels
-            Player2.UpdateGamesWon(newValue: set.player2Games())
+            Player1.logGames()//needed for previous games in set label//stores previous labels
+            Player2.logGames()
         } //maybe because no call to store previous lables on end game
         else{set.addGameToPlayer1(); } //Resets games to 0
         //usually called in addGameToPlayer
@@ -46,8 +46,8 @@ private class SetProgressionLogic { //made private as only used by the PlayerWon
         //set.addGameToPlayer2()
         match.addSetToPlayer2(); //reset sets
         if(match.matchEnded()){
-            Player1.UpdateGamesWon(newValue: set.player1Games())//stores previous labels
-            Player2.UpdateGamesWon(newValue: set.player2Games())
+            Player1.logGames()//needed for previous games in set label//stores previous labels
+            Player2.logGames()
         }
         else{set.addGameToPlayer2();}//Resets games to 0
     }

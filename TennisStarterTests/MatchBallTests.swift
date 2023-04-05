@@ -29,19 +29,29 @@ class MatchBallsTests: XCTestCase {
     func testAfter7Games(){
         //tests match balls after the first 7
         getTo7Games(); //get to 7 games
-        print("Player 2 games: \(Player2.GetCurrentGamesWonInSet())")
-        print("Player 1 games: \(Player1.GetCurrentGamesWonInSet())")
+        //print("Player 2 games: \(Player2.GetCurrentGamesWonInSet())")
+        //print("Player 1 games: \(Player1.GetCurrentGamesWonInSet())")
         XCTAssertTrue(matchBalls.newBallsCheck())
     }
     
     func testEvery9Games(){
         //Tests new match balls after every 9, after the first 7
         testAfter7Games()
+        print("Games count player 1(3): \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
+        print("Games count player 2(4): \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
+        //--------------------------------------
         getTo9Games()
+        print("Games count player 1(7): \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
+        print("Games count player 2(8): \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
         XCTAssertTrue(matchBalls.newBallsCheck())
+        //--------------------------------------
         setT.addGameToPlayer2() //make sure new balls
         setT.addGameToPlayer2()
+        print("Games count player 1: \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
+        print("Games count player 2: \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
         XCTAssertFalse(matchBalls.newBallsCheck())
+        
+        
         for _ in 0...7 {
             setT.addGameToPlayer1()
         }
@@ -49,8 +59,8 @@ class MatchBallsTests: XCTestCase {
     }
     func test9GamesAtStart(){
         getTo9Games()
-        print("Games count player 1: \(setT.player1Games()) && player count : \(Player1.GetCurrentGamesWonInSet())")
-        print("Games count player 2: \(setT.player1Games()) && player count : \(Player2.GetCurrentGamesWonInSet())")
+        print("Games count player 1: \(Player1.GetGamesWonInMatch()) && player count : \(Player1.GetCurrentGamesWonInSet())")
+        print("Games count player 2: \(Player2.GetGamesWonInMatch()) && player count : \(Player2.GetCurrentGamesWonInSet())")
         
         XCTAssertFalse(matchBalls.newBallsCheck())
     }
@@ -83,11 +93,10 @@ class MatchBallsTests: XCTestCase {
     }
     
     private func getTo9Games(){
-        for _ in 1...4 {
+        for _ in 1...4 { //8 games
             setT.addGameToPlayer1()
             setT.addGameToPlayer2()
         }
-        setT.addGameToPlayer1()
         setT.addGameToPlayer1()
     }
     

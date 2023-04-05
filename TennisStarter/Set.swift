@@ -13,23 +13,23 @@ class Set {
     private let GamesToWinaSet = 6;
     
     func addGameToPlayer1(){
-        var newGamesValue = Player1.GetCurrentGamesWonInSet();
-        newGamesValue+=1;
-        if (player1WonSet()) {
-            newGamesValue = 0;
-            Player2.UpdateGamesWon(newValue: 0);
+        if (player1WonSet()) { //end of set?
+            Player2.UpdateGamesWon(); //reset to games to 0 for player 2
         }
-        Player1.UpdateGamesWon(newValue: newGamesValue);
+        Player1.UpdateGamesWon();
     }
 
     func addGameToPlayer2(){
-        var newGamesValue = Player2.GetCurrentGamesWonInSet();
-        newGamesValue+=1;
+        /*var newGamesValue = 1; /*Player2.GetCurrentGamesWonInSet();
+        newGamesValue+=1;*/
         if (player2WonSet()) {
             newGamesValue = 0;
-            Player1.UpdateGamesWon(newValue: 0);
+            Player1.UpdateGamesWon(enter0ToReset: 0);
+        }*/
+        if (player2WonSet()) { //end of set?
+            Player1.UpdateGamesWon(); //reset to games to 0 for player 1
         }
-        Player2.UpdateGamesWon(newValue: newGamesValue);
+        Player2.UpdateGamesWon();
     }
     
     func player1Games() -> Int {
