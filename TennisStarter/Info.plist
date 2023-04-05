@@ -8,6 +8,12 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSLocationUsageDescription</key>
+	<string>&quot;Location services must be enabled&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Location only used when on the app&quot;</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>&quot;Needs access the calendar to schedule events&quot;</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
