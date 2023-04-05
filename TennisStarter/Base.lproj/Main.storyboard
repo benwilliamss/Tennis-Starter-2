@@ -217,9 +217,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qbD-iE-ZMt">
-                                <rect key="frame" x="133.47031963470329" y="51" width="106.00000000000003" height="31.000000000000057"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qbD-iE-ZMt">
+                                <rect key="frame" x="223" y="50" width="106" height="31"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Schedule">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="15"/>

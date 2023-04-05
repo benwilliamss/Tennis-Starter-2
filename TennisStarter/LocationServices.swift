@@ -12,6 +12,7 @@ import Foundation
 class FindLocation{
     //contains the locations of the major tournament countries
     //list derived from https://en.wikipedia.org/wiki/List_of_tennis_tournaments
+    //coordinates from https://gis.stackexchange.com/questions/152758/countries-latitude-and-longitude-range
     var locations : [String : [Int]]?
     init(){
         //format Location : [bottom_latitude, top_latitude, bottom_longitude, top_longitude]

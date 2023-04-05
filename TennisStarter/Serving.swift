@@ -17,13 +17,16 @@ class Serve  {
     
     func NextServe(newMatch : Bool) -> Bool {
         let previousServe = Player1Serving; //serve value at the start
-        if(newMatch){ Player1Serving     =  true } //player one serves first
+        if(newMatch){
+            Player1Serving    = true //reset to player one serves
+            servingGameStart  = true
+        } //player one serves first
         else if (tieBreak.Check() && tieBreak.newTieBreak){
             Player1Serving     =  !Player1Serving;
             tieBreak.newTieBreak = false; //start of the tie break
         }
         else if(game.complete()) {
-            Player1Serving     = !servingGameStart;
+            Player1Serving     = !servingGameStart; //needed incase a tie break to remember who served first
             servingGameStart   = Player1Serving;
             tieBreak.newTieBreak = true; //reset tie break values
             serveAlternate = 0; //reset tie break values
