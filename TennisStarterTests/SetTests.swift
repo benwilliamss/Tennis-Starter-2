@@ -31,7 +31,7 @@ class SetTests: XCTestCase {
     func testSetWinPlayer1NoMargin(){
         print("\n\n1. testSetWinPlayer1NoMargin\n")
         //Test no win when there is no margin achieved but game count is reached - player 1
-        for count in (1...5) {
+        for _ in (1...5) {
             setT.addGameToPlayer1();
             setT.addGameToPlayer2();
         }
@@ -41,7 +41,7 @@ class SetTests: XCTestCase {
     
     func testSetNoWinPlayer2NoMargin(){
         print("\n\n 3. testSetNoWinPlayer1NoMargin \n")
-        for count in (1...5) {
+        for _ in (1...5) {
             setT.addGameToPlayer1();
             setT.addGameToPlayer2();
         }
@@ -52,7 +52,7 @@ class SetTests: XCTestCase {
     func testSetWinPlayer1Margin(){
         //Test no win when there is no margin achieved but game count is reached - player 2
         print("\n\n 2. testSetWinPlayer1Margin \n")
-        for count in (1...4) {
+        for _ in (1...4) {
             setT.addGameToPlayer1();
             setT.addGameToPlayer2();
         }
@@ -62,7 +62,7 @@ class SetTests: XCTestCase {
     }
     func testSetWinPlayer2Margin(){
         print("\n\n 4. testSetWinPlayer2Margin \n")
-        for count in (1...4) {
+        for _ in (1...4) {
             setT.addGameToPlayer1();
             setT.addGameToPlayer2();
         }

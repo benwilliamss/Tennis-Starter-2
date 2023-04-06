@@ -75,7 +75,7 @@ class TieBreakTests: XCTestCase {
         
         XCTAssertTrue(game.player1Won())
         XCTAssertEqual("7" ,game.player1Score() , "Test points for player 1 in tiebreak")
-        gameWon.player1() //update game logic
+        matchLogic.player1() //update game logic
         XCTAssertTrue(match.player1Won())
     }
      func testMatchWinPlayer2(){
@@ -85,7 +85,7 @@ class TieBreakTests: XCTestCase {
          }
          XCTAssertTrue(game.player2Won())
          XCTAssertEqual("7" ,game.player2Score() , "Test points for player 1 in tiebreak")
-         gameWon.player2() //update game logic
+         matchLogic.player2() //update game logic
          XCTAssertTrue(match.player2Won())
          XCTAssertTrue(match.player2Won() &&  match.matchEnded())
      }

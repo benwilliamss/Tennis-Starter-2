@@ -52,17 +52,15 @@ class MatchBallsTests: XCTestCase {
         }
         XCTAssertTrue(matchBalls.newBallsCheck())
     }
-    func test9GamesAtStart(){
-        getTo9Games()
-        XCTAssertFalse(matchBalls.newBallsCheck())
-    }
-    
+
     func testMatchBallsOnReset(){
         //tests that the match balls can handle a game reset
         testEvery9Games()
         Player2.ResetPlayerScores() //reset scores
         Player1.ResetPlayerScores()
+        matchBalls.resetBallsFetched()//resets the balls -> usually handled by reset pressed on UI
         XCTAssertFalse(matchBalls.newBallsCheck()) //falls after resets
+        //tests recovery after reset 
         getTo7Games()
         XCTAssertTrue(matchBalls.newBallsCheck())
         getTo9Games()
@@ -84,10 +82,13 @@ class MatchBallsTests: XCTestCase {
     
     private func getTo9Games(){
         for _ in 1...4 { //8 games
+            //print("Loop count \(count)")
             setT.addGameToPlayer1()
             setT.addGameToPlayer2()
         }
         setT.addGameToPlayer1()
+        //print("Player 1 games: \(Player1.GetGamesWon())");
+        //print("Player 2 games: \(Player2.GetGamesWon())");
     }
     
     

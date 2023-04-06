@@ -28,18 +28,14 @@ class ViewController: UIViewController {
     @IBAction func p1AddPointPressed(_ sender: UIButton) {
         game.addPointToPlayer1();
         serveChange() //checks for a serve change upon new game or tie break
-        if(game.player1Won()){ //player 1 has won
-            gameWon.player1(); //update game logic
-        }
+        GameProgression.player1(); //update game logic
         UIUpdateFunctions() //Call functions that will update the UI
     }
     
     @IBAction func p2AddPointPressed(_ sender: UIButton) {
         game.addPointToPlayer2();
         serveChange() //checks for a serve change upon new game or tie break
-        if(game.player2Won()){ //player 2 won
-            gameWon.player2(); //update game logic
-        }
+        GameProgression.player2(); //update game logic
         UIUpdateFunctions()  //Call functions that will update the UI
     }
     
@@ -50,7 +46,7 @@ class ViewController: UIViewController {
         player2History.clearGamesWonLabel();
         restartMatch = true; //restarts match flag --> used in functions below
         addButtonsDisableEnable(); //enables buttons if disabled
-        matchBalls.resetMatchBalls(); //reset counts in class
+        matchBalls.resetBallsFetched(); //reset counts in class
         serveChange() //change back to player 1 serve
         UIUpdateFunctions()
         restartMatch =  false; //turns flag off
