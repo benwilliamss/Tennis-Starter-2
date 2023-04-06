@@ -10,8 +10,8 @@ import Foundation
 
 class TieBreak {
     var newTieBreak                  : Bool   = true;
-    private let _tieBreakPointWin    : String = "7";
-    private let _tieBreakPointMargin : Int    = 2;
+    private let _tieBreakPointWin    : Int = 7; //private to prevent modification
+    private let _tieBreakPointMargin : Int = 2;
 
     func Check() -> Bool {
         return  TieBreakButNotGame5() || Game5TieBreak()
@@ -25,7 +25,7 @@ class TieBreak {
         return (Player1.GetGamesWon() == 6 && Player2.GetGamesWon() == 6) &&
                 !(Player1.GetSetsWon() == 2 && Player2.GetSetsWon() == 2)
     }
-    func GetPointsToWin() -> String {
+    func GetPointsToWin() -> Int {
         return _tieBreakPointWin
     }
     func GetPointMargin() -> Int {

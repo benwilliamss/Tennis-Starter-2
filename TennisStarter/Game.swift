@@ -71,8 +71,9 @@ class Game {
     func player1Won() -> Bool{
         var result: Bool?;
         if (tieBreak.Check()){
-            result = (Player1.GetPointsWon() >= tieBreak.GetPointsToWin()) &&
-            (Int(Player1.GetPointsWon()) ?? 0) - (Int(Player2.GetPointsWon()) ?? 0) >= tieBreak.GetPointMargin();
+            let player1Points = Int(Player1.GetPointsWon()) ?? 0; //used for arithmetic below
+            result = (player1Points >= tieBreak.GetPointsToWin()) &&
+            (player1Points - (Int(Player2.GetPointsWon()) ?? 0)) >= tieBreak.GetPointMargin(); //true if tie break margin(2) and tie break points is achieved
         }
         else {
             let gamePlayer1Index = (GameOutcome.firstIndex(of:Player1.GetPointsWon()) ?? 0);
@@ -89,8 +90,9 @@ class Game {
     func player2Won() -> Bool{
         var result: Bool?;
         if (tieBreak.Check()){
-            result = (Player2.GetPointsWon() >= tieBreak.GetPointsToWin()) &&
-            (Int(Player2.GetPointsWon()) ?? 0) - (Int(Player1.GetPointsWon()) ?? 0) >= tieBreak.GetPointMargin();
+            let player2Points = Int(Player2.GetPointsWon()) ?? 0 ;
+            result = (player2Points >= tieBreak.GetPointsToWin()) &&
+            ((player2Points - (Int(Player1.GetPointsWon()) ?? 0)) >= tieBreak.GetPointMargin()); //true if tie break margin(2) and tie break points is achieved
         }
         else {
             let gamePlayer1Index = GameOutcome.firstIndex(of:Player1.GetPointsWon()) ?? 0;

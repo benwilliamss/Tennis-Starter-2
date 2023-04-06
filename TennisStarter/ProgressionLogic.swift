@@ -8,13 +8,12 @@
 
 import Foundation
 //classes to handle overall match logic
-
-class GameProgressionLogic {
-    fileprivate let setWon = SetProgressionLogic ();
+class GameProgressionLogic { //handles the logic to progress the game display and scores
+    fileprivate let setWon = SetProgressionLogic (); //composition to use class functionality
     func player1(){//Player 1 wont the game -> Reset points & check if set is won also
         //game.addPointToPlayer1();
         Player1.resetPointsValue() //reset value on game won
-        set.addGameToPlayer1();
+        set.addGameToPlayer1(); //player won game
         player1History.incrementTotalGameWon()
         if (set.player1WonSet())
         {
@@ -23,7 +22,7 @@ class GameProgressionLogic {
         if (!match.matchEnded()){
             Player2.resetPointsValue() //don't reset player score at end game
         }
-        matchBalls.newBallsCheck();
+        matchBalls.newBallsCheck(); //match ball check at the end of each game
     }
     func player2(){ //Player 2 wont the game -> Reset points & check if set is won also
         //game.addPointToPlayer2(); //may need a niche case for tiebreak matchwin
@@ -34,10 +33,10 @@ class GameProgressionLogic {
         {
             setWon.player2()
         }
-        if (!match.matchEnded()){
+        if (!match.matchEnded()){ //retain points if match has ended - dont update
             Player1.resetPointsValue()
         }
-        matchBalls.newBallsCheck();//resets points to 0
+        matchBalls.newBallsCheck(); //match ball check at the end of each game
     }
 }
 
