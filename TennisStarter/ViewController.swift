@@ -52,15 +52,21 @@ class ViewController: UIViewController {
         restartMatch =  false; //turns flag off
     }
 }
-
-extension ViewController {
+protocol InMatchDisplay {
+    func updateScores()
+    func displayWhoIsWinning()
+}
+protocol MatchEndDisplay{
+    func matchEnd()
+}
+extension ViewController : InMatchDisplay, MatchEndDisplay {
     //contains supporting class methods for the UI Functionality
     func UIUpdateFunctions() {
         //Updates UI with functions below -> groups thse together
         updateScores();
         displayWhoIsWinning();
         if(match.matchEnded()){
-            matchEndPopUp();
+            matchEnd();
         }
         storePreviousLabels();
     }
@@ -75,7 +81,7 @@ extension ViewController {
         p1SetsLabel.text   = String(Player1.GetSetsWon());
         p2SetsLabel.text   = String(Player2.GetSetsWon());
     }
-    func matchEndPopUp(){
+    func matchEnd(){
         //displays the game has ended and who has won
         let alert : UIAlertController?;
         if (match.player1Sets() == 3)
@@ -180,9 +186,9 @@ extension ViewController {
         alert.addTextField{
             (textField) in textField.placeholder = "Enter title for match"
         }
-        /*alert.addTextField{ //issue passing date to fit into calendar
-            (textField) in textField.placeholder = "Enter date for match"
-        }*/
+        alert.addTextField{ //issue passing date to fit into calendar
+            (textField) in textField.placeholder = "how many hours from now"
+        }
         alert.addTextField{
             (textField) in textField.placeholder = "Enter match duration(hours)"
         }
@@ -191,16 +197,20 @@ extension ViewController {
         }
         let enterAction = UIAlertAction(title: "Enter", style: .default){
             _ in
-            if(CalendarObj().matchSchedulingAccess()){
-                let info : String = alert.textFields![2].text ?? "";
+            if(CalendarAccessHandler().matchSchedulingAccess()){
+                let info : String = alert.textFields![3].text ?? "";
                 print("info: \(info)")
-                let duration : Double = Double(alert.textFields![1].text ?? "6") ?? 6;
+                let duration : Double = Double(alert.textFields![2].text ?? "6") ?? 6;
                 print("duration: \(duration)")
+                let startTime: Double = Double(alert.textFields![1].text ?? "24") ?? 24;
+                print("startTime: \(startTime)")
                 let title : String = alert.textFields![0].text ?? "new match";
                 print("title: \(title)")
-                CalendarObj().insertEvent(title: title,
-                                          matchTimeHours: duration,
-                                          info: info);
+                let newCalendarEvent = calendarInformation(Title: title,
+                                                    StartTime: startTime,
+                                                    Duration: duration,
+                                                    Details: info)
+                CalendarObj().addEvent(eventInfo: newCalendarEvent);
                 self.showCalendarEvent();
             }
             else {
