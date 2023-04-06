@@ -10,6 +10,7 @@ import Foundation
 
 class CalendarObj{
     /*Code taken and adapted from (Jagne, 2019)*/
+    //purpose is to add events to the calendar, and get access if necessary to complete it's function
     let  eventStore = EKEventStore()
     func matchSchedulingAccess() -> Bool {
         var matchAccess = false;
