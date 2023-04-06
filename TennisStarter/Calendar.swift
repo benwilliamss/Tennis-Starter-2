@@ -27,7 +27,7 @@ class calendarInformation{
     }
 }
 class CalendarObj : CalendarEvent{
-    /*Code taken and adapted from (Jagne, 2019)*/
+    /*code taken and adapter from (Ekevent - How to Add an Event in the Device Calendar Using Swift?, n.d.)*/
     //purpose is to add events to the calendar, and get access if necessary to complete it's function
     let  eventStore = EKEventStore()
     func addEvent(eventInfo : calendarInformation){
@@ -51,7 +51,7 @@ class CalendarObj : CalendarEvent{
 }
 
 class CalendarAccessHandler {
-    let  eventStore = EKEventStore()
+    /*Code taken and adapted from (Jagne, 2019)*/
     func matchSchedulingAccess() -> Bool {
         var matchAccess = false;
         switch EKEventStore.authorizationStatus(for: .event){
@@ -61,7 +61,7 @@ class CalendarAccessHandler {
             case .denied:
                 print("Access network")
             case .notDetermined:
-                eventStore.requestAccess(to: .event, completion:
+                EKEventStore().requestAccess(to: .event, completion:
                                             {[weak self] (granted: Bool, error: Error?)-> Void in if granted{
                                                 matchAccess = true;
                                                 }
